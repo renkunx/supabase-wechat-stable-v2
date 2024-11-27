@@ -76,7 +76,7 @@ export class FunctionsClient {
         }
       }
 
-      const response = await this.fetch(`${functionName}`, {
+      const response = await this.fetch(this.url + `/${functionName}`, {
         method: method || 'POST',
         // headers priority is (high to low):
         // 1. invoke-level headers

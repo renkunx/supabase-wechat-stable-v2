@@ -1,6 +1,6 @@
 {
   "name": "supabase-wechat-stable-v2",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "wechat Javascript client for Supabase",
   "keywords": [
     "javascript",
@@ -10,7 +10,7 @@
   "homepage": "https://github.com/supabase/supabase-js",
   "bugs": "https://github.com/supabase/supabase-js/issues",
   "license": "MIT",
-  "author": "Supabase",
+  "author": "renkunx",
   "files": [
     "dist",
     "src"
