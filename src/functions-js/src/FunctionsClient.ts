@@ -51,7 +51,7 @@ export class FunctionsClient {
       let body: any
       if (
         functionArgs &&
-        ((headers && !Object.prototype.hasOwnProperty.call(headers, 'Content-Type')) || !headers)
+        ((headers && !Object.prototype.hasOwnProperty.call(headers, 'content-type')) || !headers)
       ) {
         if (
           (typeof Blob !== 'undefined' && functionArgs instanceof Blob) ||
@@ -59,11 +59,11 @@ export class FunctionsClient {
         ) {
           // will work for File as File inherits Blob
           // also works for ArrayBuffer as it is the same underlying structure as a Blob
-          _headers['Content-Type'] = 'application/octet-stream'
+          _headers['content-type'] = 'application/octet-stream'
           body = functionArgs
         } else if (typeof functionArgs === 'string') {
           // plain string
-          _headers['Content-Type'] = 'text/plain'
+          _headers['content-type'] = 'text/plain'
           body = functionArgs
         } else if (typeof FormData !== 'undefined' && functionArgs instanceof FormData) {
           // don't set content-type headers
@@ -71,7 +71,7 @@ export class FunctionsClient {
           body = functionArgs
         } else {
           // default, assume this is JSON
-          _headers['Content-Type'] = 'application/json'
+          _headers['content-type'] = 'application/json'
           body = JSON.stringify(functionArgs)
         }
       }
@@ -81,7 +81,7 @@ export class FunctionsClient {
         // headers priority is (high to low):
         // 1. invoke-level headers
         // 2. client-level headers
-        // 3. default Content-Type header
+        // 3. default content-type header
         headers: { ..._headers, ...this.headers, ...headers },
         body,
       }).catch((fetchError) => {
@@ -97,7 +97,7 @@ export class FunctionsClient {
         throw new FunctionsHttpError(response)
       }
 
-      let responseType = (response.headers.get('Content-Type') ?? 'text/plain').split(';')[0].trim()
+      let responseType = (response.headers.get('content-type') ?? 'text/plain').split(';')[0].trim()
       let data: any
       if (responseType === 'application/json') {
         data = await response.json()

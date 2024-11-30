@@ -1,6 +1,6 @@
 {
   "name": "@renkunx/supabase-wechat-stable-v2",
-  "version": "2.1.6",
+  "version": "2.1.8",
   "description": "wechat Javascript client for Supabase",
   "keywords": [
     "javascript",

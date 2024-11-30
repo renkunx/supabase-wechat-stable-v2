@@ -1,4 +1,5 @@
 function myfetch(url, options) {
+  console.log('myfetch', url, options)
   return new Promise((resolve, reject) => {
     wx.request({
       url: url,
@@ -9,8 +10,8 @@ function myfetch(url, options) {
         Object.prototype.toString.call(options.headers) == '[object Map]'
           ? Object.fromEntries(options.headers.entries())
           : options.headers,
-      success: resolve,
       success(res) {
+        console.log('res', res)
         if (res.statusCode >= 200 && res.statusCode <= 299) {
           res.ok = true
         } else {
@@ -20,14 +21,17 @@ function myfetch(url, options) {
         res.status = res.statusCode
         res.json = function () {
           return new Promise((resolve, reject) => {
+            console.log('res.data', res.data)
             resolve(res.data)
           })
         }
         delete res.header
         delete res.statusCode
+        console.log('res', res)
         resolve(res)
       },
       fail(err) {
+        console.log('err', err)
         reject(err)
       },
     })
